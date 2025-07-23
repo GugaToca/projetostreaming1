@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🔴 Ao Vivo | ALVOPLAY</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255,0,0,0.5);
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    #btn-unmute {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #cc0000;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    #btn-unmute:hover {
+      background-color: #a00000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="logo_alvoplay.png" alt="NOVAMÍDIA" /></a>
+    </div>
+  </header>
+
+  <div class="voltar">
+    <a href="index.html" class="btn-voltar">← Voltar à Página Inicial</a>
+  </div>
+
+  <main style="padding: 1rem;">
+    <h2>🔴 Canal Ao Vivo 24h</h2>
+
+    <div class="video-wrapper">
+      <iframe
+        id="live-video"
+        src=""
+        title="Transmissão Ao Vivo"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <button id="btn-unmute">Ativar Som</button>
+
+    <p style="margin-top: 1rem;">
+      Esta transmissão está disponível em tempo real, 24 horas por dia.
+    </p>
+  </main>
+
+  <script>
+    const btnUnmute = document.getElementById('btn-unmute');
+    const iframe = document.getElementById('live-video');
+
+    btnUnmute.addEventListener('click', () => {
+      // Remove o parâmetro mute=1 da URL para ativar o som
+      const srcOriginal = iframe.src;
+      const srcSemMute = srcOriginal.replace('mute=1', 'mute=0');
+      iframe.src = srcSemMute;
+
+      // Esconde o botão após ativar som
+      btnUnmute.style.display = 'none';
+    });
+  </script>
+</body>
+</html>

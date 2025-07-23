@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chaves | ALVOPLAY</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .video-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .video-popup iframe {
+      width: 90%;
+      max-width: 800px;
+      height: 450px;
+      border: none;
+    }
+
+    .fechar-popup {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .episodio-card {
+      display: block;
+      margin: 0.5rem 0;
+      padding: 1rem;
+      background-color: #eee;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #000;
+      transition: background-color 0.3s;
+    }
+
+    .episodio-card:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="logo_alvoplay.png" alt="ALVOPLAY" /></a>
+    </div>
+  </header>
+
+  <div class="voltar">
+    <a href="index.html" class="btn-voltar">← Voltar à Página Inicial</a>
+  </div>
+
+  <main class="conteudo-detalhado">
+    <div class="banner-detalhe">
+      <img src="Chaves.png" alt="Chaves - Banner" />
+      <div class="info-banner">
+        <h1>Chaves</h1>
+        <p>Uma das séries mais amadas da televisão, com episódios clássicos e muito humor para toda a família.</p>
+      </div>
+    </div>
+
+    <section class="episodios">
+      <h2>Episódios</h2>
+      <div class="episodios-lista">
+        <!-- Links com data-video="ID_DO_VIDEO_YOUTUBE" -->
+        <a href="#" class="episodio-card" data-video="cl2Mf2F_CQs">Chaves: O Dinheiro Perdido - Parte 1</a>
+        <a href="#" class="episodio-card" data-video="SAMPLE_ID2">Chaves: O Dinheiro Perdido - Parte 2</a>
+        <a href="#" class="episodio-card" data-video="SAMPLE_ID3">Chaves: Panquecas para dentro - Parte 1</a>
+        <a href="#" class="episodio-card" data-video="SAMPLE_ID4">Chaves: Panquecas para fora - Parte 2</a>
+        <!-- Adicione mais com os respectivos IDs -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Player em popup -->
+  <div class="video-popup" id="videoPopup">
+    <span class="fechar-popup" id="fecharPopup">&times;</span>
+    <iframe id="videoFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.episodio-card');
+    const popup = document.getElementById('videoPopup');
+    const frame = document.getElementById('videoFrame');
+    const fechar = document.getElementById('fecharPopup');
+
+    cards.forEach(card => {
+      card.addEventListener('click', function(e) {
+        e.preventDefault();
+        const videoId = this.getAttribute('data-video');
+        frame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        popup.style.display = 'flex';
+      });
+    });
+
+    fechar.addEventListener('click', () => {
+      frame.src = '';
+      popup.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
